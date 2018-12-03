@@ -14,22 +14,24 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="150dp"
             android:gravity="center_horizontal"
             android:text="@string/mad_libs"
-            android:layout_marginBottom="150dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+            android:textSize="80sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="200dp"
             android:gravity="center_horizontal"
-            android:orientation="horizontal"
-            android:layout_marginBottom="200dp">
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="60dp"
                 android:layout_height="match_parent"
+                android:onClick="libTime"
                 app:srcCompat="@drawable/bluecircleapp" />
 
             <TextView
@@ -37,23 +39,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
+                android:onClick="libTime"
                 android:text="Start"
-                android:textSize="36sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="View Saved Games"
-                android:textSize="36sp" />
+                android:textSize="70sp" />
         </LinearLayout>
 
     </LinearLayout>

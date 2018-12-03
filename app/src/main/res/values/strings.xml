@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Mad Libs</string>
     <string name="mad_libs">Mad Libs</string>
+    <string name="view_saved_games">View Saved Games</string>
+    <string name="start">Start</string>
+    <string name="todo">TODO</string>
+    <string name="currentInput">input</string>
 </resources>
