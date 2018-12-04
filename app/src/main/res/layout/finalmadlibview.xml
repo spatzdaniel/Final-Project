@@ -22,11 +22,17 @@
         <TextView
             android:id="@+id/textView5"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="436dp"
             android:background="@drawable/bluecircleapp"
             android:gravity="center"
             android:text="Holy guacamole, batman! This has been the strangest MP I've done so far and I don't see and signs of imporvement"
             android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Again" />
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
