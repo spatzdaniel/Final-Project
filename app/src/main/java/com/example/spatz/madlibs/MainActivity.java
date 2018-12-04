@@ -14,8 +14,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
     }
-    private String[] inputsNeeded = new String[]{"noun", "verb", "adjective"};
 
+    /**
+     * The function that runs throughout the whole process of 
+     * @param view
+     */
     public void libTime(View view) {
 
         setContentView(R.layout.inputforthelib);
