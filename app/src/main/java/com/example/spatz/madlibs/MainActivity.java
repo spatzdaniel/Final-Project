@@ -16,12 +16,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * The function that runs throughout the whole process of 
+     * The function that runs upon pressing the start button.
      * @param view
      */
     public void libTime(View view) {
-
         setContentView(R.layout.inputforthelib);
+    }
+    public void beDone(View view) {
+        setContentView(R.layout.finalmadlibview);
     }
 
 }
