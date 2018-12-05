@@ -8,8 +8,11 @@ import android.widget.TextView;
 import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 
 public class MainActivity extends AppCompatActivity {
+    private static RequestQueue queue;
     public madLibInfo lib;
     public int count;
     public String[] userResponse;
@@ -18,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
+        queue = Volley.newRequestQueue(this);
         lib = new madLibInfo();
         userResponse = new String[lib.inputsNeeded.length];
         count = 0;
