@@ -20,7 +20,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/finishedLib"
             android:layout_width="match_parent"
             android:layout_height="436dp"
             android:background="@drawable/bluecircleapp"
@@ -32,6 +32,7 @@
             android:id="@+id/button2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="restart"
             android:text="Again" />
 
     </LinearLayout>
