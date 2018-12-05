@@ -12,12 +12,12 @@ public class madLibInfo {
      * Will store a StringArray of all the inputs needed, in order, to complete the madlib.
      * Initially, all the entries will be stored as "noun", "verb" or some other type of word.
      */
-    public String[] inputsNeeded = new String[]{"noun", "verb", "adjective"};
+    public String[] inputsNeeded;
     /**
      * This is the shell of the mad lib. It will be a string array of the original json object,
      * parsed around where the inputs need to be inserted.
      */
-    public String[] madLibBeforeEntries = new String[] {"There was a cute ", " in the park named Joe who ", " alone because his mother was" , "."};
+    public String[] madLibBeforeEntries;
 
 
     /**
@@ -26,6 +26,8 @@ public class madLibInfo {
      * defined above.
      */
     public madLibInfo() {
-
+        API info = new API();
+        inputsNeeded = info.emptyLib.split("<|//>");
+        madLibBeforeEntries = info.emptyLib.split(">|//<");
     }
 }
