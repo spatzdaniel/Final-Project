@@ -17,7 +17,7 @@ public class madLibInfo {
      * This is the shell of the mad lib. It will be a string array of the original json object,
      * parsed around where the inputs need to be inserted.
      */
-    public String[] madLibBeforeEntries;
+    public String[] madLibBeforeEntries = new String[] {"There was a cute ", " in the park named Joe who ", " alone because his mother was" , "."};
 
 
     /**

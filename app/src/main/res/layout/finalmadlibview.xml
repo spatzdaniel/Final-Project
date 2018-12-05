@@ -20,7 +20,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/finishedLib"
             android:layout_width="match_parent"
             android:layout_height="436dp"
             android:background="@drawable/bluecircleapp"
