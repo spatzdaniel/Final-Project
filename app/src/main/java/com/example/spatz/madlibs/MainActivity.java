@@ -12,7 +12,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
 public class MainActivity extends AppCompatActivity {
-    private static RequestQueue queue;
+    public static RequestQueue queue;
     public madLibInfo lib;
     public int count;
     public String[] userResponse;

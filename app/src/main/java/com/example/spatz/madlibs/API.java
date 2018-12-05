@@ -6,7 +6,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.Volley;
+//import com.android.volley.toolbox.Volley;
 
 import org.json.JSONObject;
 import org.json.JSONArray;
@@ -20,9 +20,10 @@ public class API {
     public String emptyLib = null;
     API(final RequestQueue rQueue) {
         queue = rQueue;
+        generate();
     }
     private void generate() {
-        Log.d("Tag", "Clicked!");
+        Log.d(TAG, "Generating quote...");
         try {
             JsonArrayRequest jRequest = new JsonArrayRequest(Request.Method.GET, quoteURL, null, new Response.Listener<JSONArray>() {
                 @Override
@@ -32,7 +33,7 @@ public class API {
                         JSONObject json = response.getJSONObject(0);
                         quote = json.getString("content");
                         author = json.getString("title");
-                        //Log.d(TAG, content);
+                        Log.d(TAG, quote);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
