@@ -61,5 +61,14 @@ public class MainActivity extends AppCompatActivity {
         combine += lib.madLibBeforeEntries[count];
         finishedLib.setText(combine);
     }
-
+    /**
+     * This runs when the button is clicked on the last page.
+     * Restarts the app.
+     */
+    public void restart(View view) {
+        setContentView(R.layout.home);
+        lib = new madLibInfo();
+        userResponse = new String[lib.inputsNeeded.length];
+        count = 0;
+    }
 }
