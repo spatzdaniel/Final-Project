@@ -66,7 +66,7 @@ public class API {
     private void libGenerate(final String quote) {
         Log.d(TAG,"Generating lib...");
         try {
-            JsonObjectRequest jRequest = new JsonObjectRequest(Request.Method.GET, quoteURL, null, new Response.Listener<JSONObject>() {
+            JsonObjectRequest jRequest = new JsonObjectRequest(Request.Method.GET, libURL, null, new Response.Listener<JSONObject>() {
                 @Override
                 public  void onResponse(final JSONObject response) {
                     Log.d(TAG, response.toString());
