@@ -16,13 +16,14 @@ public class MainActivity extends AppCompatActivity {
     public madLibInfo lib;
     public int count;
     public String[] userResponse;
+    public static API api;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
         queue = Volley.newRequestQueue(this);
-        lib = new madLibInfo();
+        lib = new madLibInfo(queue);
         userResponse = new String[lib.inputsNeeded.length];
         count = 0;
     }
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         }
         combine += lib.madLibBeforeEntries[count];
         finishedLib.setText(combine);
+        finishedLib.setText(api.quote);
     }
     /**
      * This runs when the button is clicked on the last page.
@@ -71,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void restart(View view) {
         setContentView(R.layout.home);
-        lib = new madLibInfo();
+        lib = new madLibInfo(queue);
         userResponse = new String[lib.inputsNeeded.length];
         count = 0;
     }
