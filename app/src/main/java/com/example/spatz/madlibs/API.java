@@ -19,9 +19,9 @@ public class API {
     private final static String libURL = "http://libberfy.herokuapp.com?/?blanks=1&q=";
     private final static String TAG = "API Manager";
     private static RequestQueue queue;
-    public String quote = "";
-    public String author = "";
-    public String emptyLib = "";
+    private String quote = "";
+    private String author = "";
+    private String emptyLib = "";
     API(final RequestQueue rQueue) {
         queue = rQueue;
         generate();
@@ -39,6 +39,14 @@ public class API {
                         quote = HtmlEscape.unescapeHtml(json.getString("content"));
                         author = json.getString("title");
                         Log.d(TAG, quote);
+
+                        //Section to format quote properly...
+                        String[] array = quote.split("<p>");
+                        quote = array[1];
+                        array = quote.split("</p>");
+                        quote = array[0];
+                        //
+
                         libGenerate(quote);
                     } catch (Exception e) {
                         e.printStackTrace();
