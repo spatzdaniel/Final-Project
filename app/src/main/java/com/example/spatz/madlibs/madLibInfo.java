@@ -1,4 +1,5 @@
 package com.example.spatz.madlibs;
+import android.util.Log;
 
 import com.android.volley.RequestQueue;
 
@@ -19,17 +20,21 @@ public class madLibInfo {
      * parsed around where the inputs need to be inserted.
      */
     public String[] madLibBeforeEntries;
-    public RequestQueue queue;
+
+    /**
+     * Stores API info
+     */
+    public API info;
 
     /**
      * The constructor for this has to take no inputs, run the random quote API, put the random
      * quote through the madlib API, and use the output from that to define the two variables
      * defined above.
      */
-    public madLibInfo(RequestQueue newQueue) {
-        queue = newQueue;
-        API info = new API(queue);
-        inputsNeeded = info.emptyLib.split("<|//>");
-        madLibBeforeEntries = info.emptyLib.split(">|//<");
+    public madLibInfo(API api) {
+        info = api;
+        inputsNeeded = "<Noun> is very <verb>.".split("<|//>");
+        Log.d("boat", api.emptyLib);
+        madLibBeforeEntries = "<Noun> is very <verb>.".split(">|//<");
     }
 }

@@ -23,7 +23,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
         queue = Volley.newRequestQueue(this);
-        lib = new madLibInfo(queue);
+        api = new API(queue);
+        lib = new madLibInfo(api);
         userResponse = new String[lib.inputsNeeded.length];
         count = 0;
     }
@@ -73,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void restart(View view) {
         setContentView(R.layout.home);
-        lib = new madLibInfo(queue);
+        lib = new madLibInfo(api);
         userResponse = new String[lib.inputsNeeded.length];
         count = 0;
     }
