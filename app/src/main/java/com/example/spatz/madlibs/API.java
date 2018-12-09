@@ -73,7 +73,6 @@ public class API {
                     try {
                         emptyLib = response.getString("madlib");
                         Log.d(TAG, quote);
-                        libGenerate(quote);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
