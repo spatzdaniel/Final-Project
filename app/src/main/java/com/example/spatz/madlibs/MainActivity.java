@@ -21,8 +21,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
-        queue = Volley.newRequestQueue(this);
-        lib = new madLibInfo();
+        lib = new madLibInfo(queue);
         userResponse = new String[lib.inputsNeeded.length];
         count = 0;
     }
@@ -46,10 +45,15 @@ public class MainActivity extends AppCompatActivity {
      */
     public void next(View view) {
         EditText input = findViewById(R.id.userInput);
-        userResponse[count] = input.getText().toString();
-        Log.d("test", userResponse[count]);
-        count++;
-        libTime(view);
+        if (input == null) {
+            TextView e = findViewById(R.id.inputneeded);
+            e.setText("Make sure your input is a(n) " + lib.inputsNeeded[count]);
+        } else {
+            userResponse[count] = input.getText().toString();
+            Log.d("test", userResponse[count]);
+            count++;
+            libTime(view);
+        }
     }
     /**
      * This is executed upon receiving all user inputs.
@@ -71,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void restart(View view) {
         setContentView(R.layout.home);
-        lib = new madLibInfo();
+        lib = new madLibInfo(queue);
         userResponse = new String[lib.inputsNeeded.length];
         count = 0;
     }
