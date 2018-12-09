@@ -19,9 +19,9 @@ public class API {
     private final static String libURL = "http://libberfy.herokuapp.com?/?blanks=1&q=";
     private final static String TAG = "API Manager";
     private static RequestQueue queue;
-    private String quote = "";
+    public String quote = "";
     private String author = "";
-    private String emptyLib = "";
+    public String emptyLib = "";
     API(final RequestQueue rQueue) {
         queue = rQueue;
         generate();
@@ -33,7 +33,7 @@ public class API {
             JsonArrayRequest jRequest = new JsonArrayRequest(Request.Method.GET, quoteURL, null, new Response.Listener<JSONArray>() {
                 @Override
                 public  void onResponse(final JSONArray response) {
-                    Log.d(TAG, response.toString());
+                    //Log.d(TAG, response.toString());
                     try {
                         JSONObject json = response.getJSONObject(0);
                         quote = HtmlEscape.unescapeHtml(json.getString("content"));
