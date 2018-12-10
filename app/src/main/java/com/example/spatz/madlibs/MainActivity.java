@@ -36,7 +36,12 @@ public class MainActivity extends AppCompatActivity {
         if (count < api.inputsNeeded.size()) {
             setContentView(R.layout.inputforthelib);
             TextView e = findViewById(R.id.inputneeded);
-            e.setText(api.inputsNeeded.get(count));
+            String[] split = api.inputsNeeded.get(count).split("_");
+            String toReturn = "";
+            for (int i = 0; i < split.length; i++) {
+                toReturn += split[i] + " ";
+            }
+            e.setText(toReturn);
         } else {
             beDone(view);
         }
