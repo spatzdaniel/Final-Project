@@ -13,9 +13,7 @@ import com.android.volley.toolbox.Volley;
 
 public class MainActivity extends AppCompatActivity {
     public static RequestQueue queue;
-    public madLibInfo lib;
     public int count;
-    public String[] userResponse;
     public static API api;
 
     @Override
@@ -24,9 +22,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.home);
         queue = Volley.newRequestQueue(this);
         api = new API(queue);
-        lib = new madLibInfo(api);
-        userResponse = new String[lib.inputsNeeded.length];
         count = 0;
+        Log.d("MAIN", Integer.toString(api.inputsNeeded.size()));
     }
     /**
      * The function that runs upon pressing the start button.
@@ -35,10 +32,11 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void libTime(View view) {
-        if (count < lib.inputsNeeded.length) {
+        Log.d("Size of Inputs Needed", api.emptyLib);
+        if (count < api.inputsNeeded.size()) {
             setContentView(R.layout.inputforthelib);
             TextView e = findViewById(R.id.inputneeded);
-            e.setText(lib.inputsNeeded[count]);
+            e.setText(api.inputsNeeded.get(count));
         } else {
             beDone(view);
         }
@@ -48,8 +46,8 @@ public class MainActivity extends AppCompatActivity {
      */
     public void next(View view) {
         EditText input = findViewById(R.id.userInput);
-        userResponse[count] = input.getText().toString();
-        Log.d("test", userResponse[count]);
+        api.userResponse[count] = input.getText().toString();
+        Log.d("test", api.userResponse[count]);
         count++;
         libTime(view);
     }
@@ -61,12 +59,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.finalmadlibview);
         TextView finishedLib = findViewById(R.id.finishedLib);
         String combine = "";
-        for (int i = 0; i < userResponse.length; i++) {
-            combine += lib.madLibBeforeEntries[i] + userResponse[i];
+        for (int i = 0; i < api.userResponse.length; i++) {
+            combine += api.madLibBeforeEntries.get(i) + api.userResponse[i];
         }
-        combine += lib.madLibBeforeEntries[count];
+        if (api.madLibBeforeEntries.size() > api.userResponse.length) {
+            combine +=  api.madLibBeforeEntries.get(count);
+        }
         finishedLib.setText(combine);
-        finishedLib.setText(api.quote);
     }
     /**
      * This runs when the button is clicked on the last page.
@@ -74,8 +73,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void restart(View view) {
         setContentView(R.layout.home);
-        lib = new madLibInfo(api);
-        userResponse = new String[lib.inputsNeeded.length];
+        api = new API(queue);
         count = 0;
     }
 }

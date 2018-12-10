@@ -1,5 +1,7 @@
 package com.example.spatz.madlibs;
 import android.util.Log;
+import java.util.List;
+import java.util.ArrayList;
 
 import com.android.volley.RequestQueue;
 
@@ -14,12 +16,12 @@ public class madLibInfo {
      * Will store a StringArray of all the inputs needed, in order, to complete the madlib.
      * Initially, all the entries will be stored as "noun", "verb" or some other type of word.
      */
-    public String[] inputsNeeded;
+    public List<String> inputsNeeded = new ArrayList<String>();
     /**
      * This is the shell of the mad lib. It will be a string array of the original json object,
      * parsed around where the inputs need to be inserted.
      */
-    public String[] madLibBeforeEntries;
+    public List<String> madLibBeforeEntries = new ArrayList<String>();
 
     /**
      * Stores API info
@@ -33,8 +35,16 @@ public class madLibInfo {
      */
     public madLibInfo(API api) {
         info = api;
-        inputsNeeded = "<Noun> is very <verb>.".split("<|//>");
-        Log.d("boat", api.emptyLib);
-        madLibBeforeEntries = "<Noun> is very <verb>.".split(">|//<");
+        String[] split = info.emptyLib.split("<|//>");
+        for (int i = 0; i < split.length; i++) {
+            if (split[i].length() > 0) {
+                if (i % 2 == 0) {
+                    inputsNeeded.add(inputsNeeded.size(), split[i]);
+                } else {
+                    madLibBeforeEntries.add(madLibBeforeEntries.size(), split[i]);
+                }
+            }
+        }
+        Log.d("LibConstructor", info.emptyLib);
     }
 }

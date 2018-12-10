@@ -14,11 +14,17 @@ import org.json.JSONObject;
 import org.json.JSONArray;
 import org.unbescape.html.HtmlEscape;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class API {
     private final static String quoteURL = "http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1\n";
     private final static String libURL = "http://libberfy.herokuapp.com?/?blanks=1&q=";
     private final static String TAG = "API Manager";
     private static RequestQueue queue;
+    public List<String> inputsNeeded = new ArrayList<String>();
+    public List<String> madLibBeforeEntries = new ArrayList<String>();
+    public String[] userResponse;
     public String quote = "";
     private String author = "";
     public String emptyLib = "";
@@ -33,7 +39,7 @@ public class API {
             JsonArrayRequest jRequest = new JsonArrayRequest(Request.Method.GET, quoteURL, null, new Response.Listener<JSONArray>() {
                 @Override
                 public  void onResponse(final JSONArray response) {
-                    //Log.d(TAG, response.toString());
+                    Log.d(TAG, response.toString());
                     try {
                         JSONObject json = response.getJSONObject(0);
                         quote = HtmlEscape.unescapeHtml(json.getString("content"));
@@ -73,6 +79,7 @@ public class API {
                     try {
                         emptyLib = response.getString("madlib");
                         Log.d(TAG, emptyLib);
+                        setLists(emptyLib);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -87,5 +94,23 @@ public class API {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    private void setLists(String emptyLib) {
+        String[] split = emptyLib.split("<|>");
+
+        for (int i = 0; i < split.length; i++) {
+            if (!(split[i].equals("null")) || split[i].length() > 0) {
+                if (i % 2 == 0) {
+                    madLibBeforeEntries.add(madLibBeforeEntries.size(), split[i]);
+                } else {
+                    inputsNeeded.add(inputsNeeded.size(), split[i]);
+                }
+            }
+            if (madLibBeforeEntries.get(0).equals("null")) {
+                madLibBeforeEntries.remove(0);
+            }
+        }
+        userResponse = new String[inputsNeeded.size()];
+        Log.d("RESPONSEARRAYLENGTH", Integer.toString(userResponse.length));
     }
 }
