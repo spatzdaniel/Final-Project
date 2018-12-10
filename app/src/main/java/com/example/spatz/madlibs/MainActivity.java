@@ -46,10 +46,15 @@ public class MainActivity extends AppCompatActivity {
      */
     public void next(View view) {
         EditText input = findViewById(R.id.userInput);
-        api.userResponse[count] = input.getText().toString();
-        Log.d("test", api.userResponse[count]);
-        count++;
-        libTime(view);
+        if (input.getText() == null || input.getText().length() == 0) {
+            TextView e = findViewById(R.id.inputneeded);
+            e.setText("Please input a(n) " + api.inputsNeeded.get(count));
+        } else {
+            api.userResponse[count] = input.getText().toString();
+            Log.d("test", api.userResponse[count]);
+            count++;
+            libTime(view);
+        }
     }
     /**
      * This is executed upon receiving all user inputs.
